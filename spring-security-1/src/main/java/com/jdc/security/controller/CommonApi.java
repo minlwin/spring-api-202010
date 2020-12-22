@@ -5,11 +5,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("common")
+@RequestMapping("public")
 public class CommonApi {
+	
 
 	@GetMapping
 	public String index() {
-		return "Hello from Common";
+		return "Hello from Public";
 	}
 }
