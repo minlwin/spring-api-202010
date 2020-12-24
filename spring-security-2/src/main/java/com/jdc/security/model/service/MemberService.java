@@ -1,10 +1,14 @@
 package com.jdc.security.model.service;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.jdc.security.model.dto.SignUpDto;
 import com.jdc.security.model.entity.Member;
+import com.jdc.security.model.entity.Member.Role;
 import com.jdc.security.model.repo.MemberRepo;
 
 @Service
@@ -26,5 +30,16 @@ public class MemberService {
 
 	public Member findByLoginId(String loingId) {
 		return repo.findOneByLoginId(loingId).orElseThrow();
+	}
+
+	public Member signUp(SignUpDto dto) {
+		Member member = new Member();
+		member.setName(dto.getName());
+		member.setLoginId(dto.getLoginId());
+		member.setPassword(dto.getPassword());
+		member.setExpireDate(LocalDate.now().plusYears(1));
+		member.setRole(Role.Member);
+		
+		return create(member);
 	}
 }

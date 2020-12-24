@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jdc.security.model.dto.SignInDto;
 import com.jdc.security.model.dto.SignInResultDto;
 import com.jdc.security.model.dto.SignUpDto;
+import com.jdc.security.model.entity.Member;
 import com.jdc.security.model.service.MemberService;
 
 @RestController
@@ -30,12 +31,8 @@ public class SecurityApi {
 	public SignInResultDto signIn(@RequestBody SignInDto dto) {
 		SignInResultDto result = new SignInResultDto();
 		try {
-			// authenticate
-			Authentication authResult = authManager.authenticate(new UsernamePasswordAuthenticationToken(dto.getLoginId(), dto.getPassword()));
-			if(authResult.isAuthenticated()) {
-				SecurityContextHolder.getContext().setAuthentication(authResult);
-				result.setLoginUser(members.findByLoginId(dto.getLoginId()));
-			}
+			internalSignIn(dto.getLoginId(), dto.getPassword());
+			result.setLoginUser(members.findByLoginId(dto.getLoginId()));
 		} catch (BadCredentialsException e) {
 			result.setMessage("Please check your password.");
 		} catch (InternalAuthenticationServiceException e) {
@@ -50,10 +47,27 @@ public class SecurityApi {
 	@PostMapping("sign-up")
 	public SignInResultDto signUp(@RequestBody SignUpDto dto) {
 		
-		// sign up
+		SignInResultDto result = new SignInResultDto();
 		
-		// login
+		try {
+			// sign up
+			Member member = members.signUp(dto);
+			// login
+			internalSignIn(dto.getLoginId(), dto.getPassword());
+			
+			result.setLoginUser(member);
+		} catch (Exception e) {
+			result.setMessage("Your login id has alredy used.");
+		}
 		
-		return null;
+		return result;
+	}
+	
+	private void internalSignIn(String loginId, String password) {
+		// authenticate
+		Authentication authResult = authManager.authenticate(new UsernamePasswordAuthenticationToken(loginId, password));
+		if(authResult.isAuthenticated()) {
+			SecurityContextHolder.getContext().setAuthentication(authResult);
+		}
 	}
 }

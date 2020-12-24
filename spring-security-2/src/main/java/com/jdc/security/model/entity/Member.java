@@ -42,7 +42,7 @@ public class Member {
 	private LocalDate expireDate;
 	
 	public enum Role {
-		Libarian, Member, Admin
+		Member, Libarian, Admin
 	}
 	
 	@PostPersist
