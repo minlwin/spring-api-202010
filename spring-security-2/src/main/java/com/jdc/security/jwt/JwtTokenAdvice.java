@@ -32,7 +32,7 @@ public class JwtTokenAdvice implements ResponseBodyAdvice<Object>{
 		// Authenticated
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
-		if(null != auth && ! (auth instanceof AnonymousAuthenticationToken)) {
+		if(null != auth && ! (auth instanceof AnonymousAuthenticationToken) && auth.isAuthenticated()) {
 			String token = provider.generate(auth.getName(), auth.getAuthorities());
 			ServletServerHttpResponse resp = (ServletServerHttpResponse) response;
 			resp.getServletResponse().addHeader("jdc-jwt-token", token);

@@ -23,10 +23,14 @@ public class JwtTokenFilter extends OncePerRequestFilter{
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		
-		// check token
-		String token = request.getHeader("jdc-jwt-token");
-		Authentication authResult = provider.authenticate(token);
-		SecurityContextHolder.getContext().setAuthentication(authResult);
+		try {
+			// check token
+			String token = request.getHeader("jdc-jwt-token");
+			Authentication authResult = provider.authenticate(token);
+			SecurityContextHolder.getContext().setAuthentication(authResult);
+		} catch (Exception e) {
+			System.err.println("Invalid Token : ".concat(e.getMessage()));
+		}
 		
 		filterChain.doFilter(request, response);
 	}
