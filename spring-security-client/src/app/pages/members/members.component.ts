@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { MemberService } from 'src/app/services/member.service';
 
 @Component({
   templateUrl: './members.component.html',
   styles: [
   ]
 })
-export class MembersComponent implements OnInit {
+export class MembersComponent {
 
-  constructor() { }
+  list: any[] = []
 
-  ngOnInit(): void {
+  constructor(service: MemberService) {
+    service.getAll().subscribe(data => this.list = data)
   }
 
 }

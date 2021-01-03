@@ -12,4 +12,15 @@
             <th>Expiration</th>
         </tr>
     </thead>
+    <tbody>
+        <tr *ngFor="let item of list">
+            <td>{{item.role}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.loginId}}</td>
+            <td>{{item.phone}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.registrationDate}}</td>
+            <td>{{item.expireDate}}</td>
+        </tr>
+    </tbody>
 </table>
