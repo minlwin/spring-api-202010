@@ -12,7 +12,7 @@ import { SecurityService } from 'src/app/services/security.service';
 export class SigninComponent {
 
   form: FormGroup
-  message = null
+  message: string = ''
 
   constructor(builder: FormBuilder, private service: SecurityService, private router: Router) {
     this.form = builder.group({
@@ -23,6 +23,7 @@ export class SigninComponent {
 
   signIn() {
     if (this.form.valid) {
+      this.message = ''
       this.service.signIn(this.form.value).subscribe(data => {
         if (data.loginUser) {
           SecurityContext.context.loginUser = data.loginUser

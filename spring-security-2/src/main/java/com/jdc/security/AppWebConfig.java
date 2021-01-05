@@ -12,7 +12,7 @@ public class AppWebConfig implements WebMvcConfigurer{
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**")
-			.allowedOriginPatterns("*")
+			.allowedOrigins("*")
 			.allowedMethods("*")
 			.exposedHeaders("jdc-jwt-token");
 	}
