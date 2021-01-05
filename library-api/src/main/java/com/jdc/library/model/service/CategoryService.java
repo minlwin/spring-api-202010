@@ -5,20 +5,21 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jdc.library.model.BaseService;
 import com.jdc.library.model.entity.Category;
 import com.jdc.library.model.repo.CategoryRepo;
 
 @Service
-public class CategoryService {
+public class CategoryService extends BaseService<Category, Integer>{
 
+	
 	@Autowired
-	private CategoryRepo repo;
+	public CategoryService(CategoryRepo repo) {
+		super(repo);
+	}
 
 	public List<Category> search() {
 		return repo.findAll();
 	}
 
-	public Category save(Category c) {
-		return repo.save(c);
-	}
 }
