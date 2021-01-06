@@ -2,6 +2,8 @@ package com.jdc.library.model;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 public abstract class BaseApi<T, ID> {
 
@@ -13,13 +15,13 @@ public abstract class BaseApi<T, ID> {
 	}
 
 	@PostMapping
-	public T create(T t) {
+	public T create(@RequestBody T t) {
 		return service.save(t);
 	}
 
 
 	@PutMapping
-	public T update(T t) {
+	public T update(@RequestBody T t) {
 		return service.save(t);
 	}
 }

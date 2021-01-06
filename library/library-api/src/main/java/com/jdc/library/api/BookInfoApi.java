@@ -1,6 +1,5 @@
 package com.jdc.library.api;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,7 +11,6 @@ import com.jdc.library.model.service.BookInfoService;
 @RequestMapping("book-info")
 public class BookInfoApi extends BaseApi<BookInfo, Integer>{
 
-	@Autowired
 	public BookInfoApi(BookInfoService service) {
 		super(service);
 	}

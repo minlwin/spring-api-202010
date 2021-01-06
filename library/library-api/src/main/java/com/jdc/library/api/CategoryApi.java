@@ -1,6 +1,5 @@
 package com.jdc.library.api;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +14,6 @@ import com.jdc.library.model.service.CategoryService;
 @RequestMapping("category")
 public class CategoryApi extends BaseApi<Category, Integer>{
 
-	@Autowired
 	public CategoryApi(CategoryService service) {
 		super(service);
 	}
