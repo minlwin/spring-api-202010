@@ -10,6 +10,7 @@ import { MembersComponent } from './members/members.component';
 import { MemberTypesComponent } from './member-types/member-types.component';
 import { LibariansComponent } from './libarians/libarians.component';
 import { CategoryEditComponent } from './categories/category-edit/category-edit.component';
+import { MemberTypeEditComponent } from './member-types/member-type-edit/member-type-edit.component';
 
 
 
@@ -23,6 +24,7 @@ import { CategoryEditComponent } from './categories/category-edit/category-edit.
     MemberTypesComponent,
     LibariansComponent,
     CategoryEditComponent,
+    MemberTypeEditComponent,
   ],
   imports: [
     CommonModule,

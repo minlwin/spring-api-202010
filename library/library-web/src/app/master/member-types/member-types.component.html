@@ -5,20 +5,40 @@
         <a class="btn btn-primary mr-2">
             <i class="fa fa-print mr-2"></i> Export
         </a>
-        <a class="btn btn-primary">
+        <a (click)="addNew()" class="btn btn-primary">
             <i class="fa fa-plus mr-2"></i> Add New
         </a>
     </div>
 </div>
 
-<div class="card">
-    <div class="card-body">
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Member Type</th>
+            <th>In Hand Books</th>
+            <th>Duration</th>
+            <th>Extension</th>
+            <th></th>
+        </tr>
+    </thead>
 
-        <div class="form">
-            <div class="form-row">
+    <tbody>
+        <tr *ngFor="let item of list">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.inHand}}</td>
+            <td>{{item.duration}}</td>
+            <td>{{item.extensionDays}}</td>
+            <td>
+                <a (click)="edit(item)" class="btn btn-link">
+                    <i class="fa fa-pencil"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
-            </div>
-        </div>
-
-    </div>
+<div id="editDialog" class="modal fade">
+    <app-member-type-edit [data]="target" (saveListener)="save($event)"></app-member-type-edit>
 </div>
