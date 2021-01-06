@@ -1,17 +1,18 @@
 package com.jdc.library.model.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jdc.library.model.BaseRepository;
 import com.jdc.library.model.BaseService;
-import com.jdc.library.model.entity.Member;
+import com.jdc.library.model.entity.MemberType;
+import com.jdc.library.model.repo.MemberTypeRepo;
 
 @Service
-public class MemberTypeService extends BaseService<Member, Integer> {
+public class MemberTypeService extends BaseService<MemberType, Integer> {
 
-	public MemberTypeService(BaseRepository<Member, Integer> repo) {
+	@Autowired
+	public MemberTypeService(MemberTypeRepo repo) {
 		super(repo);
-		// TODO Auto-generated constructor stub
 	}
 
 }
