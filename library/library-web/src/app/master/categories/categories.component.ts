@@ -32,7 +32,7 @@ export class CategoriesComponent {
   }
 
   private reload() {
-    this.service.getAll().subscribe(data => this.list = data)
+    this.service.getAll().subscribe(data => this.list = data.list)
   }
 
 }
