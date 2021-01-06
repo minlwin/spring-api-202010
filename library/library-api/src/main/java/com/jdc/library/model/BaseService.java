@@ -12,4 +12,8 @@ public abstract class BaseService<T, ID> {
 	public T save(T t) {
 		return repo.save(t);
 	}
-}
+	
+	public Page<T> getAll() {
+		return repo.search(null, null, null, 0, 0);
+	}
+ }

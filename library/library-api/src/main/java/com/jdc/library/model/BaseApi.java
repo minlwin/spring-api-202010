@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 public abstract class BaseApi<T, ID> {
 
-	private BaseService<T, ID> service;
+	protected BaseService<T, ID> service;
 
 	public BaseApi(BaseService<T, ID> service) {
 		super();
